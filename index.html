@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Night Files — The Great Train Robbery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">NIGHT FILES <span> / CASE 08.63</span></div>
+    <div class="case-status">ARCHIVED CASE · BUCKINGHAMSHIRE, ENGLAND</div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="eyebrow">HISTORICAL INVESTIGATION NO. 008</p>
+      <h1>The Great Train<br><em>Robbery.</em></h1>
+      <p class="intro-text">
+        England, August 1963. A mail train has been stopped in the night.
+        Millions of pounds are missing. The evidence is waiting.
+      </p>
+      <button id="startButton" class="primary-button">OPEN THE CASE →</button>
+    </section>
+
+    <section class="game-layout" id="game" hidden>
+      <div class="main-panel">
+        <div class="scene-heading">
+          <div>
+            <p class="eyebrow" id="chapterLabel">CHAPTER 01</p>
+            <h2 id="sceneTitle">The Railway</h2>
+          </div>
+          <span class="location-tag" id="locationTag">BRIDEGO BRIDGE</span>
+        </div>
+
+        <div class="scene" id="scene">
+          <div class="moon"></div>
+          <div class="stars">·　 *　 ·　 ·　 *　 ·</div>
+          <div class="distant-hills"></div>
+          <div class="ground"></div>
+
+          <div class="railway-scene" id="railwayScene">
+            <div class="signal">
+              <div class="signal-light"></div>
+              <div class="signal-pole"></div>
+              <div class="signal-base"></div>
+            </div>
+            <div class="train-engine">
+              <div class="engine-smoke"></div>
+              <div class="engine-window"></div>
+              <div class="engine-number">D 326</div>
+              <div class="train-wheel wheel-one"></div>
+              <div class="train-wheel wheel-two"></div>
+              <div class="train-wheel wheel-three"></div>
+            </div>
+            <div class="train-carriage">
+              <div class="carriage-window"></div>
+              <div class="carriage-window"></div>
+              <div class="carriage-window"></div>
+              <div class="carriage-wheel"></div>
+              <div class="carriage-wheel"></div>
+            </div>
+            <div class="rail rail-one"></div>
+            <div class="rail rail-two"></div>
+            <div class="rail-ties"></div>
+          </div>
+
+          <div class="farm-scene" id="farmScene" hidden>
+            <div class="tree tree-one"></div>
+            <div class="tree tree-two"></div>
+            <div class="farmhouse">
+              <div class="roof"></div>
+              <div class="farm-window"></div>
+              <div class="farm-door"></div>
+              <div class="farm-light"></div>
+            </div>
+            <div class="farm-path"></div>
+          </div>
+
+          <div class="board-scene" id="boardScene" hidden>
+            <div class="board">
+              <div class="board-title">CASE EVIDENCE</div>
+              <div class="board-paper paper-one">TRAIN</div>
+              <div class="board-paper paper-two">FINGERPRINTS</div>
+              <div class="board-paper paper-three">STATEMENTS</div>
+              <div class="board-string"></div>
+            </div>
+          </div>
+
+          <div id="hotspots"></div>
+
+          <div id="player" class="player" aria-label="Walking detective">
+            <div class="player-hat"></div>
+            <div class="player-head"></div>
+            <div class="player-eye"></div>
+            <div class="player-body"></div>
+            <div class="player-arm left"></div>
+            <div class="player-arm right"></div>
+            <div class="player-leg left"></div>
+            <div class="player-leg right"></div>
+          </div>
+
+          <div class="walk-hint">WASD / ARROWS: MOVE &nbsp; · &nbsp; E: INVESTIGATE</div>
+          <div class="scene-message" id="sceneMessage">Find the evidence.</div>
+        </div>
+
+        <div class="story-area">
+          <p class="eyebrow">FIELD NOTES</p>
+          <p id="story">
+            The date is 8 August 1963. A Royal Mail train travelling through
+            Buckinghamshire has been stopped. Search the scene for clues.
+          </p>
+          <div class="scene-controls">
+            <button id="backButton" class="secondary-button">← PREVIOUS LOCATION</button>
+            <button id="nextButton" class="primary-button">NEXT LOCATION →</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="side-card">
+          <p class="eyebrow">YOUR EVIDENCE</p>
+          <h3>Evidence bag</h3>
+          <p class="small-copy">Clues you have discovered appear here.</p>
+          <ul id="evidenceList" class="evidence-list">
+            <li class="empty-evidence">No evidence collected yet.</li>
+          </ul>
+          <div class="evidence-count"><span id="evidenceCount">0</span> / 7 CLUES</div>
+        </div>
+
+        <div class="side-card journal-card">
+          <p class="eyebrow">INVESTIGATOR'S LOG</p>
+          <h3>Case journal</h3>
+          <p id="journalText">Your investigation has not started.</p>
+        </div>
+
+        <div class="side-card">
+          <p class="eyebrow">CASE FILE</p>
+          <div class="fact-row"><span>Incident</span><strong>Train robbery</strong></div>
+          <div class="fact-row"><span>Date</span><strong>08.08.1963</strong></div>
+          <div class="fact-row"><span>Location</span><strong>England</strong></div>
+          <div class="fact-row"><span>Original value</span><strong>£2.6 million</strong></div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="overlay" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="closeModal" aria-label="Close">×</button>
+      <p class="eyebrow" id="modalEyebrow">EVIDENCE FOUND</p>
+      <h2 id="modalTitle">Clue discovered</h2>
+      <div id="modalBody"></div>
+      <div id="modalActions" class="modal-actions"></div>
+    </section>
+  </div>
+
+  <footer>
+    <span>NIGHT FILES — A HISTORICAL MYSTERY</span>
+    <span>BASED ON THE EVENTS OF 1963</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
